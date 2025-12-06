@@ -1,0 +1,22 @@
+{
+  "name": "sample",
+  "description": "Sample dataset for testing OCR evaluation framework",
+  "created_at": "2024-11-29T00:00:00Z",
+  "version": "1.0",
+  "documents": {
+    "prescription_001": {
+      "type": "prescription",
+      "complexity": "simple",
+      "handwritten": false
+    },
+    "prescription_002": {
+      "type": "prescription", 
+      "complexity": "medium",
+      "handwritten": true
+    }
+  },
+  "tags": ["medical", "prescription", "test"],
+  "notes": "This is a sample dataset. Add your own PDF documents to the documents/ folder and corresponding ground truth JSON files to the ground_truth/ folder."
+}
+
+

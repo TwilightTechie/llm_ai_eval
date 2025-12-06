@@ -1,0 +1,84 @@
+# Evaluation Configuration
+# Controls RAGAS metrics, multiprocessing, and resource allocation
+
+# RAGAS Metrics Configuration
+metrics:
+  enabled:
+    - factual_correctness
+    - semantic_similarity
+    - answer_relevancy
+    - faithfulness
+    - answer_correctness
+  
+  # LLM settings for RAGAS evaluation
+  llm:
+    model: "gpt-4o-mini"      # Use gpt-4o-mini for faster/cheaper evaluation
+    api_key_env: "OPENAI_API_KEY"
+    temperature: 0.0
+    
+    # RAGAS internal settings (reduces "1 generation instead of 3" warnings)
+    # Note: This is informational - RAGAS handles this internally
+    max_retries: 3
+    timeout: 120
+
+# Multiprocessing Configuration
+multiprocessing:
+  enabled: true
+  max_workers: 4  # Number of parallel workers
+  
+  # Resource limits per worker
+  resources:
+    max_memory_mb: 2048  # Max memory per worker in MB
+    cpu_affinity: null   # List of CPU cores to use, null = all available
+  
+  # Batch processing
+  batch_size: 10  # Documents per batch
+  timeout_seconds: 600  # Increased timeout per document (10 min)
+
+# Rate Limiting (Global) - MAXED OUT
+rate_limiter:
+  enabled: true
+  strategy: "token_bucket"  # Options: token_bucket, sliding_window
+  
+  # Token bucket settings - HIGH LIMITS
+  bucket_size: 500
+  refill_rate: 100  # tokens per second
+  
+  # Sliding window settings (if strategy = sliding_window)
+  window_size_seconds: 60
+  max_requests_per_window: 500
+  
+  # Per-request settings
+  requests_per_minute: 500
+  tokens_per_minute: 800000
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "detailed"  # Options: simple, detailed, json
+  
+  # Log file settings
+  file:
+    enabled: true
+    path: "logs/evaluation.log"
+    max_size_mb: 50
+    backup_count: 5
+    
+  # Console output
+  console:
+    enabled: true
+    colorized: true
+  
+  # Performance logging
+  performance:
+    enabled: true
+    log_processing_time: true
+    log_memory_usage: true
+    log_api_calls: true
+
+# Output Configuration
+output:
+  reports_dir: "reports"
+  format: "html"  # Options: html, json, both
+  include_samples: true
+  max_failure_samples: 10

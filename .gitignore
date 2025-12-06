@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.pyc
+.Python
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Build outputs
+target/
+build/
+dist/
+*.egg-info/
+*.egg
+
+# OCR Service uploads
+ocr-service/uploads/
+ocr-service/target/
+
+# Environment files
+.env
+.env.local
+*.env
+
+# Logs
+*.log
+logs/
+
+# Test outputs
+reports/
+*.html
+
+# Large binary files
+*.dylib
+*.so
+*.node
+*.pack
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Next.js
+.next/
+
+# Maven
+*.jar
+!pom.xml
+

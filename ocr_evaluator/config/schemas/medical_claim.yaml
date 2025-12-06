@@ -1,0 +1,94 @@
+# Medical Claim Document Schema
+# Users can add/modify fields as needed
+
+schema_name: medical_claim
+version: "1.0"
+description: "Schema for medical insurance claim documents"
+
+fields:
+  - name: claim_number
+    type: string
+    required: true
+    description: "Unique claim reference number"
+    
+  - name: patient_name
+    type: string
+    required: true
+    description: "Full name of the patient"
+    
+  - name: policy_number
+    type: string
+    required: true
+    description: "Insurance policy number"
+    
+  - name: hospital_name
+    type: string
+    required: true
+    description: "Name of the hospital"
+    
+  - name: admission_date
+    type: date
+    required: true
+    description: "Date of hospital admission"
+    format: "YYYY-MM-DD"
+    
+  - name: discharge_date
+    type: date
+    required: false
+    description: "Date of hospital discharge"
+    format: "YYYY-MM-DD"
+    
+  - name: diagnosis
+    type: string
+    required: true
+    description: "Primary diagnosis"
+    
+  - name: treatment_type
+    type: string
+    required: false
+    description: "Type of treatment (e.g., surgical, medical)"
+    
+  - name: total_bill_amount
+    type: number
+    required: true
+    description: "Total hospital bill amount"
+    
+  - name: claimed_amount
+    type: number
+    required: true
+    description: "Amount being claimed"
+    
+  - name: room_charges
+    type: number
+    required: false
+    description: "Room and boarding charges"
+    
+  - name: doctor_fees
+    type: number
+    required: false
+    description: "Doctor consultation fees"
+    
+  - name: medicine_charges
+    type: number
+    required: false
+    description: "Charges for medicines"
+    
+  - name: investigation_charges
+    type: number
+    required: false
+    description: "Charges for tests and investigations"
+    
+  - name: attending_doctor
+    type: string
+    required: false
+    description: "Name of the attending doctor"
+
+extraction_prompt: |
+  Extract the following information from this medical insurance claim document.
+  Return the data in JSON format with these fields:
+  {field_list}
+  
+  For monetary amounts, extract only the numeric value.
+  If a field is not found or unclear, use null.
+
+

@@ -1,0 +1,33 @@
+# OCR Evaluator Dependencies
+# Python 3.10+ required
+
+# Core dependencies
+ragas>=0.2.0
+openai>=1.0.0
+langchain-openai>=0.1.0
+datasets>=2.0.0
+
+# PDF processing
+pymupdf>=1.24.0  # PyMuPDF - preferred PDF backend
+Pillow>=10.0.0
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# Data processing
+pandas>=2.0.0
+
+# Templating for reports
+jinja2>=3.0.0
+
+# Utilities
+psutil>=5.9.0  # For memory monitoring
+
+# Text similarity (used by RAGAS internally)
+rapidfuzz>=3.0.0
+
+# Optional: Alternative PDF backend (requires poppler)
+# pdf2image>=1.16.0
+
+

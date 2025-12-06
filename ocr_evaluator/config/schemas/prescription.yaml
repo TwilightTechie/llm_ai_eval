@@ -1,0 +1,83 @@
+# Prescription Document Schema
+# Users can add/modify fields as needed
+
+schema_name: prescription
+version: "1.0"
+description: "Schema for medical prescription documents"
+
+fields:
+  - name: patient_name
+    type: string
+    required: true
+    description: "Full name of the patient"
+    
+  - name: patient_age
+    type: string
+    required: false
+    description: "Age of the patient"
+    
+  - name: patient_gender
+    type: string
+    required: false
+    description: "Gender of the patient"
+    
+  - name: doctor_name
+    type: string
+    required: true
+    description: "Name of the prescribing doctor"
+    
+  - name: doctor_registration_number
+    type: string
+    required: false
+    description: "Medical registration number of the doctor"
+    
+  - name: hospital_name
+    type: string
+    required: false
+    description: "Name of the hospital or clinic"
+    
+  - name: diagnosis
+    type: string
+    required: false
+    description: "Medical diagnosis or condition"
+    
+  - name: medications
+    type: list
+    required: true
+    description: "List of prescribed medications with dosage"
+    item_schema:
+      - name: medicine_name
+        type: string
+      - name: dosage
+        type: string
+      - name: frequency
+        type: string
+      - name: duration
+        type: string
+    
+  - name: prescription_date
+    type: date
+    required: true
+    description: "Date of the prescription"
+    format: "YYYY-MM-DD"
+    
+  - name: follow_up_date
+    type: date
+    required: false
+    description: "Recommended follow-up date"
+    
+  - name: special_instructions
+    type: string
+    required: false
+    description: "Any special instructions or notes"
+
+# Extraction prompt template (used by LLM-based OCR)
+extraction_prompt: |
+  Extract the following information from this medical prescription document.
+  Return the data in JSON format with these fields:
+  {field_list}
+  
+  If a field is not found or unclear, use null.
+  For medications, extract each medicine as a separate item in the list.
+
+

@@ -1,0 +1,38 @@
+# OCR Providers Configuration
+# Add new providers here with their specific settings
+
+providers:
+  openai:
+    enabled: true
+    model: "gpt-4o"
+    api_key_env: "OPENAI_API_KEY"  # Environment variable name
+    max_tokens: 4096
+    temperature: 0.0
+    
+    # Rate limiting settings - MAXED OUT for fastest processing
+    rate_limit:
+      requests_per_minute: 500      # OpenAI Tier 1: 500 RPM, Tier 2+: 5000 RPM
+      tokens_per_minute: 800000     # OpenAI Tier 1: 800K TPM
+      max_retries: 5
+      retry_delay_seconds: 0.5
+    
+    # Cost per 1K tokens (for future cost tracking)
+    cost:
+      input_per_1k: 0.005
+      output_per_1k: 0.015
+
+  # Placeholder for future providers
+  # textract:
+  #   enabled: false
+  #   region: "us-east-1"
+  #   rate_limit:
+  #     requests_per_minute: 100
+
+  # google_docai:
+  #   enabled: false
+  #   project_id: "your-project-id"
+  #   location: "us"
+  #   processor_id: "your-processor-id"
+
+# Default provider to use if not specified
+default_provider: "openai"
